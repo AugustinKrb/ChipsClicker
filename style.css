@@ -22,6 +22,9 @@ main {
 
 #boutonChips {
     margin-top: 5%;
+    width: 60%;
+    height: auto;
+
 }
 
 footer {
