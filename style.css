@@ -5,10 +5,23 @@ body {
 
 header {
     width: 100%;
+    text-indent: 3%;
 }
 
 main {
     width: 100%;
+    text-align: center;
+}
+
+#bonusDispo button {
+    width: 80px;
+    height: 80px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#boutonChips {
+    margin-top: 5%;
 }
 
 footer {
