@@ -1,5 +1,5 @@
 var nbrClick = 0;
-var nbrChips = 60;
+var nbrChips = 0;
 var tabIdBonus = ["Coupdepoing", "marteau", "pistolet"]
 var tabBonus = ["\uD83D\uDC4A", "\uD83D\uDD28", "\uD83D\uDD2B"];
 var tabCout = ["20", "40", "60"];
@@ -7,6 +7,10 @@ var tabBonusMultiplicateur = [4, 10, 20];
 var tabBonusActifs = initialiserBonus(tabBonus);
 
 var bonusMultiplicateur = valeurMultiplicateur();
+
+/* BONUS */
+const CHIPS_MP3 = new Audio("./sons/chipsCassee33.mp3");
+/* ***** */
 
 function valeurMultiplicateur() {    
     let multiplicateur = 0;
@@ -30,11 +34,17 @@ function initialiserBonus(tab) {
     return res;
 }
 
-function chipsCassee() {
+function chipsCassee(evet) {
     nbrClick ++;
     nbrChips += bonusMultiplicateur;
     console.log("nbr click : " + nbrClick + " et nbrChips : " + nbrChips);
     actualisationAffichageClickEtChips();
+
+    /* BONUS */
+    miettesDeChips();
+    CHIPS_MP3.pause();
+    CHIPS_MP3.currentTime = 0;
+    CHIPS_MP3.play();
 }
 
 function actualisationAffichageClickEtChips() {
@@ -79,4 +89,36 @@ function afficherBonusDebloques() {
         }
     }
     document.getElementById("bonus").innerHTML = str;
+}
+
+/* BONUS */
+
+const TEMP_ANIMATION = 1000;
+var posL = 0;
+var posT = 0;
+
+document.addEventListener("mousedown", function(evt) {
+    posL = evt.pageX;
+    posT = evt.pageY;
+}, false);
+
+function miettesDeChips() {
+    const TMP = 60;
+    for (let i = 0; i < 3; i++) {
+        let miette = document.createElement('i');
+    
+        miette.classList.add('miette');
+        //miette.style.left = Math.random() * 50 + '%';
+        //miette.style.left = Math.floor(Math.random() * (52 - 48 + 1)) + 48 + "%";
+        miette.style.left = posL + Math.random() * TMP + "px";
+        miette.style.top = posT + Math.random() * TMP + "px";
+        miette.style.opacity = 1;
+        miette.style.fontSize = Math.random() * 15 + "px";
+        
+        document.getElementById("boutonChips").appendChild(miette);
+        
+        setTimeout(() => {
+            miette.remove();
+        }, 650)
+    }
 }
