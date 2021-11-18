@@ -15,13 +15,15 @@
                 <span>Nombre de chips cassées :</span>
                 <span id="nbrChips">0</span>
                 <span>Bonus :</span>
-                <div id="bonus"><script>afficherBonusDebloques();</script></div>
+                <span id="bonus"><script>afficherBonusDebloques();</script></span>
             </p>
         </header>
         
         <main>
             <div id="bonusDispo"><script>affichageBonusDisponibles();</script></div>
-            <button id="boutonChips" type="button" onclick="chipsCassee();">Chips</button>
+            <button id="boutonChips" type="button" onclick="chipsCassee();">
+                <img src="./images/chips.png">
+            </button>
         </main>
     
         <footer>
