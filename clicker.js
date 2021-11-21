@@ -39,6 +39,7 @@ function chipsCassee(evet) {
     nbrChips += bonusMultiplicateur;
     console.log("nbr click : " + nbrClick + " et nbrChips : " + nbrChips);
     actualisationAffichageClickEtChips();
+    supprimerMessagesErreur();
 
     /* BONUS */
     miettesDeChips();
@@ -61,6 +62,7 @@ function affichageBonusDisponibles() {
             let nameButton = document.createTextNode(tabBonus[i] + " (" + tabCout[i] + ")");
             button.id = tabIdBonus[i];
             button.type = "button";
+            button.title = "Ce bonus vous permettra de casser " + tabBonusMultiplicateur[i] + " chips en plus.";
             button.addEventListener("click", debloquerBonus);
             button.appendChild(nameButton);
             document.getElementById("bonusDispo").appendChild(button);
@@ -70,7 +72,6 @@ function affichageBonusDisponibles() {
 
 function debloquerBonus() {
     idx = tabIdBonus.indexOf(this.id);
-    let multiplicateur = 0;
     if (nbrChips >= tabCout[idx]) {
         tabBonusActifs[idx] = true;
         nbrChips -= tabCout[idx];
@@ -78,6 +79,11 @@ function debloquerBonus() {
         afficherBonusDebloques();
         affichageBonusDisponibles();
         actualisationAffichageClickEtChips();
+        supprimerMessagesErreur();
+    } else {
+        let tmp = tabCout[idx] - nbrChips;
+        let msg = "Vous ne pouvez pas acheter ce bonus, il vous manque " + tmp + " chips pour le débloquer.";
+        document.getElementById("messagesErreur").innerHTML = msg;
     }
 }
 
@@ -89,6 +95,10 @@ function afficherBonusDebloques() {
         }
     }
     document.getElementById("bonus").innerHTML = str;
+}
+
+function supprimerMessagesErreur() {
+    document.getElementById("messagesErreur").innerHTML = "&nbsp;";
 }
 
 /* BONUS */
