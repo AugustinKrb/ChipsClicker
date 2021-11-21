@@ -3,8 +3,9 @@
     <head>
         <title>Chips Clicker 2.0</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="./style.css"/>
-        <script src="clicker.js"></script>
+        <link rel="stylesheet" href="./styles/whiteTheme.css" type="text/css" title="Thème clair"/>
+        <link rel="alternate stylesheet" href="./styles/blackTheme.css" type="text/css" title="Thème sombre">
+        <script src="./clicker.js"></script>
     </head> 
 
     <body>
@@ -21,6 +22,7 @@
         
         <main>
             <div id="bonusDispo"><script>affichageBonusDisponibles();</script></div>
+            <div id="messagesErreur">&nbsp;</div>
             <button id="boutonChips" type="button" onclick="chipsCassee();">
                 <img src="./images/chips.png">
             </button>
