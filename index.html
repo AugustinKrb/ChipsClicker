@@ -11,9 +11,9 @@
     <body>
         <header>
             <p>
-                <span>Nombre de click :</span>
+                <span>Nombre de clics :</span>
                 <span id="nbrClick">0</span>
-                <span>Nombre de chips cassées :</span>
+                <span>Nombre de chips écrasés :</span>
                 <span id="nbrChips">0</span>
                 <span>Bonus :</span>
                 <span id="bonus"><script>afficherBonusDebloques();</script></span>
@@ -24,8 +24,9 @@
             <div id="bonusDispo"><script>affichageBonusDisponibles();</script></div>
             <div id="messagesErreur">&nbsp;</div>
             <button id="boutonChips" type="button" onclick="chipsCassee();">
-                <img src="./images/chips.png">
+                <a href="#"><img id="imageChips" src="./images/chips.png"></a>
             </button>
+            <button id="boutonSon" type="button" onclick="volumeSon();">&#128266;</button>
         </main>
     
         <footer>
