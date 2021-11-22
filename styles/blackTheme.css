@@ -1,9 +1,10 @@
 body {
-    background-color: #151515; /* #121212 */
-    width: auto;
+    background-color: #151515;
+    width: 100%;
     height: auto;
     margin-top: 0;
     margin-left: 0;
+    color: #151515;
 }
 
 header {
@@ -21,12 +22,13 @@ main {
 }
 
 #bonusDispo button {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     margin-left: 2%;
     margin-right: 2%;
     background-color: #FECE85;
     border: none;
+    font-size: medium;
 }
 
 #messagesErreur {
@@ -34,7 +36,7 @@ main {
     font-weight: bold;
     font-size: x-large;
     position: relative;
-    top: 30px;
+    margin-top: 3%;
 }
 
 #boutonChips img {
@@ -50,6 +52,17 @@ main {
     padding: 2%;
     background-color: #151515;
     border: none;
+}
+
+#boutonSon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    right: 10px;
+    bottom: 16%;
+    font-size: x-large;
+    border: none;
+    background-color: #FECE85;
 }
 
 footer {
@@ -87,11 +100,11 @@ footer {
     line-height: 1;
 	position: absolute;
     z-index: 1;
-    animation: miettesTombent 1s ease;
+    animation: miettesTombent 0.5s ease;
 }
 
 @keyframes miettesTombent {
-    from {top: 350px;}
-    50%  {top: 150px;}
-    to   {transform: translateY(550px);}
+    from {top: 42%;}
+    50%  {top: 32%;}
+    to   {transform: translateY(80%);}
 }
