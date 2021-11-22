@@ -1,9 +1,9 @@
 var nbrClick = 0;
 var nbrChips = 0;
-var tabIdBonus = ["Coupdepoing", "marteau", "pistolet"]
-var tabBonus = ["\uD83D\uDC4A", "\uD83D\uDD28", "\uD83D\uDD2B"];
-var tabCout = ["20", "40", "60"];
-var tabBonusMultiplicateur = [4, 10, 20];
+var tabIdBonus = ["poing", "pied", "marteau", "pistolet", "bombeNucleaire"]
+var tabBonus = ["\uD83D\uDC4A", "\uD83E\uDDB6", "\uD83D\uDD28", "\uD83D\uDD2B", "\u2622"];
+var tabCout = [50, 300, 500, 5000, 99999];
+var tabBonusMultiplicateur = [4, 7, 10, 20, 999];
 var tabBonusActifs = initialiserBonus(tabBonus);
 
 var bonusMultiplicateur = valeurMultiplicateur();
@@ -43,9 +43,11 @@ function chipsCassee(evet) {
 
     /* BONUS */
     miettesDeChips();
-    CHIPS_MP3.pause();
-    CHIPS_MP3.currentTime = 0;
-    CHIPS_MP3.play();
+    if (sonActive) {
+        CHIPS_MP3.pause();
+        CHIPS_MP3.currentTime = 0;
+        CHIPS_MP3.play();
+    }
 }
 
 function actualisationAffichageClickEtChips() {
@@ -62,7 +64,7 @@ function affichageBonusDisponibles() {
             let nameButton = document.createTextNode(tabBonus[i] + " (" + tabCout[i] + ")");
             button.id = tabIdBonus[i];
             button.type = "button";
-            button.title = "Ce bonus vous permettra de casser " + tabBonusMultiplicateur[i] + " chips en plus.";
+            button.title = "Ce bonus vous permettra d'écraser " + tabBonusMultiplicateur[i] + " chips en plus par clic.";
             button.addEventListener("click", debloquerBonus);
             button.appendChild(nameButton);
             document.getElementById("bonusDispo").appendChild(button);
@@ -80,6 +82,7 @@ function debloquerBonus() {
         affichageBonusDisponibles();
         actualisationAffichageClickEtChips();
         supprimerMessagesErreur();
+        changerCurseur(tabIdBonus[idx]);
     } else {
         let tmp = tabCout[idx] - nbrChips;
         let msg = "Vous ne pouvez pas acheter ce bonus, il vous manque " + tmp + " chips pour le débloquer.";
@@ -88,11 +91,20 @@ function debloquerBonus() {
 }
 
 function afficherBonusDebloques() {
+    let tmp = 0;
+    let nbrBonus = 0
     let str = "";
     for (let i = 0; i < tabBonusActifs.length; i++) {
         if (tabBonusActifs[i]) {
             str += tabBonus[i];
+            tmp += tabBonusMultiplicateur[i];
+            nbrBonus++;
         }
+    }
+    if (nbrBonus > 1) {
+        document.getElementById("bonus").title = ("Avec ces bonus débloqués, vous écrasez maintenant " + tmp + " chips par clic.");
+    } else {
+        document.getElementById("bonus").title = ("Avec ce bonus débloqué, vous écrasez maintenant " + tmp + " chips par clic.");
     }
     document.getElementById("bonus").innerHTML = str;
 }
@@ -101,11 +113,17 @@ function supprimerMessagesErreur() {
     document.getElementById("messagesErreur").innerHTML = "&nbsp;";
 }
 
+function changerCurseur(nom) {
+    let url = "url(\"./images/" + nom + ".png\"), default"
+    document.getElementById("boutonChips").style.cursor = url;
+    document.getElementById("imageChips").style.cursor = url;
+}
+
 /* BONUS */
 
-const TEMP_ANIMATION = 1000;
 var posL = 0;
 var posT = 0;
+var sonActive = true;
 
 document.addEventListener("mousedown", function(evt) {
     posL = evt.pageX;
@@ -129,6 +147,16 @@ function miettesDeChips() {
         
         setTimeout(() => {
             miette.remove();
-        }, 650)
+        }, 450)
     }
+}
+
+function volumeSon() {
+    if (sonActive) {
+        document.getElementById("boutonSon").innerHTML = "\uD83D\uDD07";    //Afficher son muet
+    } else {
+        document.getElementById("boutonSon").innerHTML = "\uD83D\uDD0A";    //Afficher son NON muet
+    }
+    sonActive = !sonActive;
+    return sonActive;
 }
