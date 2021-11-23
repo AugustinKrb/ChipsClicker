@@ -21,6 +21,21 @@
         </header>
         
         <main>
+            <div id="info">
+                <div id="contenuInfo">
+                    <button id="boutonCroixInfo" type="button" onclick="affichageInfo();">&#10060;</button>
+                    <h1>Les règles</h1>
+                    <ul>
+                        <li>Chaque clic vous rapportera un certain nombre de chips (1 chips par clic pour commencer).</li>
+                        <li>Il vous est possible d'augmenter le nombre de chips cassés par clic grâce aux différents bonus.</li>
+                        <li>Le prix du bonus est indiqué entre paranthèses. Si vous avez assez de chips vous aurez le droit de le débloquer.</li>
+                        <li>Vous pouvez connaître le nombre de chips écrasés par clic en plus pour chaque bonus en laissant votre souris sur ceux-ci.</li>
+                        <li>Vous pouvez connaître le nombre de chips écrasés par clic en laissant la souris sur la liste des bonus située en haut de l'écran, à côté du nombre de chips cassés.</li>
+                        <li>Vous avez un bouton en bas à droite de la page vous permettant d'activer/désactiver le son.</li>
+                    </ul>
+                </div>
+            </div>
+            <button id="boutonAfficherInfo" type="button" onclick="affichageInfo();">&#8505;</button>
             <div id="bonusDispo"><script>affichageBonusDisponibles();</script></div>
             <div id="messagesErreur">&nbsp;</div>
             <button id="boutonChips" type="button" onclick="chipsCassee();">
