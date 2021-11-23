@@ -10,6 +10,7 @@ var bonusMultiplicateur = valeurMultiplicateur();
 
 /* BONUS */
 const CHIPS_MP3 = new Audio("./sons/chipsCassee33.mp3");
+var infoAffichee = false;
 /* ***** */
 
 function valeurMultiplicateur() {    
@@ -159,4 +160,16 @@ function volumeSon() {
     }
     sonActive = !sonActive;
     return sonActive;
+}
+
+function affichageInfo() {
+    let info = document.getElementById("info");
+    let bouttonInfo = document.getElementById("boutonAfficherInfo");
+    if (getComputedStyle(info).display == "none") {
+        info.style.display = "block";
+        bouttonInfo.style.display = "none";
+    } else {
+        info.style.display = "none";
+        bouttonInfo.style.display = "block";
+    }
 }
